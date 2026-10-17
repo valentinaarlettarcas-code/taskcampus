@@ -17,3 +17,13 @@ You can also try [the experimental native React Compiler support in plugin-react
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Documentación de API
+
+El contrato propuesto del servicio de Gestión se encuentra en
+[docs/contrato_api.md](docs/CONTRATO_API.md).
+
+Incluye endpoints, autenticación, respuestas, errores
+y el formato propuesto de `verificar-token`.
+
+Estado: pendiente de validación con el backend.
