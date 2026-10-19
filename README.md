@@ -73,3 +73,21 @@ JSONPlaceholder simula las operaciones de escritura: responde como si hubieran f
 - Al crear una tarea, la API responde siempre con el mismo identificador (201). Ese valor no se usa como clave: cada tarea tiene un identificador propio de la interfaz y, cuando existe en la API, un identificador remoto aparte.
 - Las tareas creadas durante la sesión no existen en la API, así que no se hacen peticiones sobre ellas. Cambiar su estado, editarlas o eliminarlas se aplica solo en la aplicación, y se muestra un aviso.
 - Si una petición falla, el estado no se modifica y se informa el error.
+
+
+Identificadores y API simulada
+
+**Explicación:** El identificador de interfaz distingue cada tarea dentro de la aplicación y se usa como `key` en la lista; el identificador remoto es el que tiene el recurso en la API y se usa en las peticiones de actualización y eliminación. En JSONPlaceholder no son equivalentes: al crear una tarea la API responde siempre con el mismo `id` (201) y no guarda el recurso, por lo que usar ese valor como clave produciría claves repetidas y operaciones sobre la tarea equivocada. Por eso cada tarea tiene un `id` local único (`api-1`, `api-2`... para las que llegan por GET y `local-1`, `local-2`... para las creadas en la sesión) y, por separado, un `idRemoto` (el número de la API, o `null` si la tarea solo existe en la aplicación). Sobre las tareas creadas en la sesión no se hacen peticiones, porque el recurso no existe en el servidor: el cambio se aplica solo en la aplicación y se muestra un aviso. Si una petición falla, el estado no se modifica y se informa el error.
+
+**Fuentes consultadas:**
+- JSONPlaceholder, guía de uso: https://jsonplaceholder.typicode.com/guide/
+- React, "Rendering lists", sección sobre `key`: https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key
+
+**Archivos donde se aplicó:**
+- `src/services/tareasService.js`: `obtenerTareas` construye `id` e `idRemoto`; `crearTarea` devuelve la respuesta de la API sin usar su `id` como identidad.
+- `src/hooks/useTareas.js`: `nuevoIdLocal` genera los identificadores locales, `crear` los asigna y `operar` omite la petición cuando `idRemoto` es `null`.
+
+**Cómo verificarlo:**
+1. Crear dos tareas seguidas y comprobar que ambas aparecen y se distinguen, sin advertencias de claves repetidas en la consola del navegador.
+2. Completar o eliminar una de ellas: solo cambia esa tarea y se muestra el aviso de que el cambio es local.
+3. Con la aplicación cargada, desconectar la red desde las herramientas del navegador y completar una tarea obtenida de la API: se informa el error y ninguna tarea cambia.
