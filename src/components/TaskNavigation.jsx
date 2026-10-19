@@ -1,27 +1,24 @@
 
+import ActionButton from "./ActionButton";
+
 function TaskNavigation({ vista, setVista }) {
+  const vistas = [
+    { id: "resumen", nombre: "Resumen" },
+    { id: "tareas", nombre: "Tareas" },
+    { id: "nueva", nombre: "Nueva tarea" }
+  ];
+
   return (
     <nav className="task-navigation">
-      <button
-        className={vista === "inicio" ? "activo" : ""}
-        onClick={() => setVista("inicio")}
-      >
-        Inicio
-      </button>
-
-      <button
-        className={vista === "tareas" ? "activo" : ""}
-        onClick={() => setVista("tareas")}
-      >
-        Mis tareas
-      </button>
-
-      <button
-        className={vista === "resumen" ? "activo" : ""}
-        onClick={() => setVista("resumen")}
-      >
-        Resumen
-      </button>
+      {vistas.map((opcion) => (
+        <ActionButton
+          key={opcion.id}
+          className={vista === opcion.id ? "activo" : ""}
+          onClick={() => setVista(opcion.id)}
+        >
+          {opcion.nombre}
+        </ActionButton>
+      ))}
     </nav>
   );
 }

@@ -3,6 +3,7 @@ import TaskItem from "./TaskItem";
 
 function TaskList({
   tareas = [],
+  totalTareas = 0,
   enCurso = [],
   onCompletar,
   onEditar,
@@ -13,7 +14,11 @@ function TaskList({
       <h2 className="section-title">Listado de tareas</h2>
 
       {tareas.length === 0 ? (
-        <p>No hay tareas disponibles.</p>
+        totalTareas === 0 ? (
+          <p>No hay ninguna tarea creada todavía.</p>
+        ) : (
+          <p>No hay resultados para este filtro o búsqueda.</p>
+        )
       ) : (
         <ul className="task-list">
           {tareas.map((tarea) => (

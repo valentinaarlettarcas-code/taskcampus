@@ -1,12 +1,23 @@
-function ActionButton({ onReview }) {
+
+function ActionButton({
+  children,
+  onClick,
+  disabled = false,
+  type = "button",
+  className = "",
+  ...props
+}) {
   return (
-    <section>
-      <h2>Acciones</h2>
-      <button onClick={onReview} className="task-button">
-        Revisar tareas
-      </button>
-    </section>
-  )
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={`task-button ${className}`.trim()}
+      {...props}
+    >
+      {children}
+    </button>
+  );
 }
 
-export default ActionButton
+export default ActionButton;
