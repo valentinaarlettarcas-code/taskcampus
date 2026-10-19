@@ -1,19 +1,32 @@
-# React + Vite
+# TaskCampus
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web en React para gestionar tareas académicas. Laboratorio final de Desarrollo de Aplicaciones Web. Carga las diez primeras tareas desde JSONPlaceholder y permite crear, completar, editar, eliminar, filtrar y buscar tareas.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Versiones con las que se desarrolló y probó el proyecto:
 
-## React Compiler
+| Integrante | Node.js | npm |
+| --- | --- | --- |
+| Valentina | v24.22.0 | 11.19.1 |
+| Alejandra | v24.19.0 | 11.17.0 |
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Instalación y ejecución
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+```bash
+git clone https://github.com/valentinaarlettarcas-code/taskcampus.git
+cd taskcampus
+npm install
+npm run dev
+```
 
-## Expanding the ESLint configuration
+La aplicación queda disponible en http://localhost:5173/.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Compilación y revisión
+
+```bash
+npm run build   # genera la versión de producción en /dist
+npm run lint    # revisa el código con ESLint
+```
+
+`node_modules` no se incluye en el repositorio: las dependencias se instalan con `npm install`.
